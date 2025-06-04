@@ -1,0 +1,38 @@
+version: '3.8'
+
+services: 
+
+  nginx:
+    image: nginx
+    networks: 
+      - backend
+      - frontend
+    ports: 
+      - "4001:80"
+    restart: unless-stopped
+
+  php:
+    image: php:8.0-fpm
+    networks:
+      - backend
+    restart: unless-stopped
+
+  mysql:  
+    image: mysql:8.0
+    networks: 
+      - backend
+    restart: unless-stopped
+
+  phpmyadmin: 
+    image: phpmyadmin
+    ports:
+      - "6001:80"
+    networks: 
+      - backend
+      - frontend
+    restart: unless-stopped
+
+
+networks:
+  backend:
+  frontend:
