@@ -33,21 +33,35 @@ services:
     container_name: mysql
     volumes:
       - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: db
+      MYSQL_USER: ewa
+      MYSQL_PASSWORD_FILE: run/secrets/mysql_password
     networks: 
       - backend
     restart: unless-stopped
+    secrets:
+      - mysql_root_password
+      - mysql_password
 
   phpmyadmin: 
     image: phpmyadmin
     container_name: phpmyadmin
     ports:
       - "6001:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ewa
+      PMA_PASSWORD_FILE: /run/secrets/mysql_password
     networks: 
       - backend
       - frontend
     depends_on:
       - mysql
     restart: unless-stopped
+    secrets:
+      - mysql_password
 
 volumes:
   mysql_data:
@@ -55,3 +69,9 @@ volumes:
 networks:
   backend:
   frontend:
+
+secrets:
+  mysql_root_password:
+    file: mysql_root_password.txt
+  mysql_password:
+    file: mysql_password.txt

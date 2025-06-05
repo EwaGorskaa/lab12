@@ -11,7 +11,7 @@
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #fff;
+        color: #ae7dac;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -25,7 +25,7 @@
 <body>
     <h1>Aplikacja mikrousługowa LEMP</h1>
     <h4>Laboratorium 12</h4>
-    <p>Ewa Górska</p>
+    <p>Ewa Górska gr. 6.4</p>
 </body>
 </html>
 
